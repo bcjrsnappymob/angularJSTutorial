@@ -1,13 +1,10 @@
 <div *ngIf="hero">
     <h2>{{hero.name | uppercase}} Details</h2>
     <div><span>id: </span>{{hero.id}}</div>
-    <div><span>name: </span>{{hero.name}}</div>
-
     <div>
-        <label>name: 
-            <!-- [()] is Angular's two-way binding syntax which allow data to flow in both directions-->
-            <input [(ngModel)]="hero.name" placeholder="name"/> 
-        </label>
-
+      <label>name:
+        <input [(ngModel)]="hero.name" placeholder="name"/>
+      </label>
     </div>
-</div>
+    <button (click)="goBack()">go back</button>
+  </div>
