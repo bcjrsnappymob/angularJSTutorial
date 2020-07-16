@@ -10,6 +10,7 @@ jobs:
       - checkout
       - run: npm install
       - run: cd ./angular-tour-of-heroes
+      - run: ls -a
       - run: npm test
       - run: curl -X POST -d {} ${hook}
 workflows:
