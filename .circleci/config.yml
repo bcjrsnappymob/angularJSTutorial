@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: cd ./angular-tour-of-heroes && sudo npm install -g @angular/cli > /dev/null && npm test
+      - run: cd ./angular-tour-of-heroes && sudo npm install -g @angular/cli > /dev/null && ng update && npm update && ng test
       - run: curl -X POST -d {} ${hook}
 workflows:
     build-and-test:
