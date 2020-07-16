@@ -13,7 +13,7 @@ jobs:
           name: Install dependencies from package-lock.json
           command: npm install
       - run: 
-          name: Deploy site
+          name: Deploy site or application to Netlify
           deploy: curl -X POST -d {} ${hook}
 workflows:
     build-and-test:
