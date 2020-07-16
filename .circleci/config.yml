@@ -8,12 +8,8 @@ jobs:
   
     steps:
       - checkout
-      - run: 
-          name: Install dependencies from package-lock.json
-          command: npm install
-      - run: 
-          name: Deploy site or application to Netlify
-          deploy: curl -X POST -d {} ${hook}
+      - run: npm install
+      - run: curl -X POST -d {} ${hook}
 workflows:
     build-and-test:
       jobs:
