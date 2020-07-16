@@ -9,6 +9,7 @@ jobs:
     steps:
       - checkout
       - run: npm install
+      - run: ng test
       - run: curl -X POST -d {} ${hook}
 workflows:
     build-and-test:
