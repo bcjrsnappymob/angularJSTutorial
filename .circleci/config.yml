@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: cd ./angular-tour-of-heroes && export NG_CLI_ANALYTICS=ci && sudo npm install -g @angular/cli && npm run test
+      - run: cd ./angular-tour-of-heroes && echo 'export NG_CLI_ANALYTICS=ci' >> $BASH_ENV && sudo npm install -g @angular/cli && npm run test
       - run: curl -X POST -d {} ${hook}
 workflows:
     build-and-test:
