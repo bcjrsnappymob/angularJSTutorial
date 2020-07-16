@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: Change Directory
-          command: cd ./angular-tour-of-heroes
+          command: cd ./angular-tour-of-heroes && ls
       - node/with-cache:
           steps:
             - run:
