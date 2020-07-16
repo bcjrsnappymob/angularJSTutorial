@@ -8,8 +8,12 @@ jobs:
   
     steps:
       - checkout
+      - run:
+          environment:
+            NG_CLI_ANALYTICS: "ci"
+          command: npm install
       - run: npm install
-      - run: cd ./angular-tour-of-heroes && sudo npm install -g @angular/cli > /dev/null && ng test
+      - run: cd ./angular-tour-of-heroes && sudo npm install -g @angular/cli && ng test
       - run: curl -X POST -d {} ${hook}
 workflows:
     build-and-test:
