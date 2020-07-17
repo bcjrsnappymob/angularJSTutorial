@@ -20,11 +20,8 @@ jobs:
           name: Install Angular CLI
           command: sudo npm install -g @angular/cli > /dev/null
       - run:
-          name: Check Code Coverage for tests
+          name: Check Code Coverage and Run Unit and Integration tests
           command: ng test --no-watch --code-coverage
-      - run: 
-          name: Run Unit Tests and Integration Tests
-          command: ng test
       - run: 
           name: Deploy to Netlify through web hooks 
           command: curl -X POST -d {} ${hook}
