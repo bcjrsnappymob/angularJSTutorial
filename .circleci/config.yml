@@ -21,8 +21,14 @@ jobs:
           paths:
             - "node_modules"
       - run:
-          name: Downgrade ChromeDriver ver 84 to ver 83 for e2e testing
-          command: npm install chromedriver@83
+          name: Upgrade Google Chrome Version to 84 for e2e tests
+          command: |
+            sudo apt-get update
+            sudo apt-get install lsb-release libappindicator3-1
+            curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo dpkg -i google-chrome.deb
+            sudo sed -i 's|HERE/chrome"|HERE/chrome" --no-sandbox|g' /opt/google/chrome/google-chrome
+            rm google-chrome.deb
       - run:
           name: Check Code Coverage and Run Unit and Integration tests
           command: npm run test -- --no-watch --no-progress --code-coverage --browsers ChromeHeadless
