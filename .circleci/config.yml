@@ -5,7 +5,7 @@ jobs:
   build-test-deploy:
     working_directory: ~/angularJSTutorial
     docker:
-      - image: circleci/node:jessie-browsers
+      - image: circleci/node:12.18.0-browsers
     executor:
       name: node/default
   
