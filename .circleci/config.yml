@@ -21,6 +21,9 @@ jobs:
           paths:
             - "node_modules"
       - run:
+          name: Downgrade ChromeDriver ver 84 to ver 83 for e2e testing
+          command: npm install chromedriver@83
+      - run:
           name: Check Code Coverage and Run Unit and Integration tests
           command: npm run test -- --no-watch --no-progress --code-coverage --browsers ChromeHeadless
       - run:
