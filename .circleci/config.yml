@@ -20,7 +20,7 @@ jobs:
           key: angularJSTutorial-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             - "node_modules"
-      - run: npm i protractor
+      - run: npm i chromedriver --chromedriver_version=LATEST
       - run:
           name: Check Code Coverage and Run Unit and Integration tests
           command: npm run test -- --no-watch --no-progress --code-coverage --browsers ChromeHeadless
