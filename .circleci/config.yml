@@ -11,7 +11,9 @@ jobs:
     steps:
       - checkout
       - run: echo 'export NG_CLI_ANALYTICS=ci' >> $BASH_ENV
+      - run: ls -a
       - run: cd ./angular-tour-of-heroes 
+      - run: ls -a
       - run: npm install
       - run: npm install -g @angular/cli
       - run: npm run test
