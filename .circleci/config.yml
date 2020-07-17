@@ -11,17 +11,15 @@ jobs:
     steps:
       - checkout
       - run: 
-          name: Ignore Google's Angular CLI Analytics Request
-          command: echo 'export NG_CLI_ANALYTICS=ci' >> $BASH_ENV
-      - run: 
           name: List current directory (For Debugging Purposes)
           command: ls -a
       - run: 
           name: Install dependencies from package-lock.json
           command: npm install
       - run: 
-          name: Check for Angular
-          command: ng -v
+          name: Install Angular CLI
+          environment: NG_CLI_ANALYTICS: "ci"
+          command: sudo npm install -g @angular/cli
       - run: 
           name: Run Unit Tests and Integration Tests
           command: npm run test
