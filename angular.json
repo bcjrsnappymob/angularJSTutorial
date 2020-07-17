@@ -2,6 +2,9 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
+  "cli":{
+    "analytics": false
+  },
   "projects": {
     "angular-tour-of-heroes": {
       "projectType": "application",
@@ -9,9 +12,6 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
-      "cli":{
-        "analytics": false
-      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
