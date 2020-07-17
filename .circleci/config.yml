@@ -10,14 +10,24 @@ jobs:
   
     steps:
       - checkout
-      - run: echo 'export NG_CLI_ANALYTICS=ci' >> $BASH_ENV
-      - run: ls -a
-      - run: cd ./angular-tour-of-heroes 
-      - run: ls -a
-      - run: npm install
-      - run: npm install -g @angular/cli
-      - run: npm run test
-      - run: curl -X POST -d {} ${hook}
+      - run: 
+          name: Ignore Google's Angular CLI Analytics Request
+          command: echo 'export NG_CLI_ANALYTICS=ci' >> $BASH_ENV
+      - run: 
+          name: List current directory (For Debugging Purposes)
+          command: ls -a
+      - run: 
+          name: Install dependencies from package-lock.json
+          command: npm install
+      - run: 
+          name: Install Angular CLI
+          command: npm install -g @angular/cli
+      - run: 
+          name: Run Unit Tests and Integration Tests
+          command: npm run test
+      - run: 
+          name: Deploy to Netlify through web hooks 
+          command: curl -X POST -d {} ${hook}
 workflows:
     build-and-test:
       jobs:
