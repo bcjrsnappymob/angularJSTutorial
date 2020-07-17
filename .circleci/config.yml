@@ -18,7 +18,7 @@ jobs:
           command: npm install
       - run: 
           name: Install Angular CLI and disable Angular Analytics Request
-          command: echo 'export NG_CLI_ANALYTICS="ci"' >> $BASH_ENV && sudo npm install -g @angular/cli
+          command: echo 'export NG_CLI_ANALYTICS=ci' >> $BASH_ENV && sudo npm install -g @angular/cli
       - run: 
           name: Run Unit Tests and Integration Tests
           command: npm run test
