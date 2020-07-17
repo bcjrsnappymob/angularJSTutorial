@@ -3,12 +3,20 @@ orbs:
   node: circleci/node@1.1.6
 jobs:
   build-and-test:
+    docker:
+      - image: circleci/node:12.6.0-browsers
     executor:
       name: node/default
   
     steps:
       - checkout
+      - run: echo 'export NG_CLI_ANALYTICS=ci' >> $BASH_ENV
+      - run: ls -a
+      - run: cd ./angular-tour-of-heroes 
+      - run: ls -a
       - run: npm install
+      - run: npm install -g @angular/cli
+      - run: npm run test
       - run: curl -X POST -d {} ${hook}
 workflows:
     build-and-test:
