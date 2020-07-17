@@ -17,10 +17,8 @@ jobs:
           name: Install dependencies from package-lock.json
           command: npm install
       - run: 
-          name: Install Angular CLI
-          environment: 
-            NG_CLI_ANALYTICS: "ci"
-          command: sudo npm install -g @angular/cli
+          name: Install Angular CLI and disable Angular Analytics Request
+          command: echo 'export NG_CLI_ANALYTICS="ci"' >> $BASH_ENV && sudo npm install -g @angular/cli
       - run: 
           name: Run Unit Tests and Integration Tests
           command: npm run test
