@@ -16,12 +16,9 @@ jobs:
       - run: 
           name: Install dependencies from package-lock.json
           command: npm install
-      - run:
-          name: Set Environment
-          command: echo 'export NG_CLI_ANALYTICS=ci' >> $BASH_ENV
       - run: 
           name: Install Angular CLI
-          command: sudo npm install -g @angular/cli
+          command: sudo npm install -g @angular/cli > /dev/null
       - run: 
           name: Run Unit Tests and Integration Tests
           command: ng test
