@@ -22,7 +22,7 @@ jobs:
             - "node_modules"
       - run:
           name: Check Code Coverage and Run Unit and Integration tests
-          command: npm run test -- --no-watch --no-progress --code-coverage --browsers=ChromeHeadlessCI
+          command: npm run test -- --no-watch --no-progress --code-coverage --browsers ChromeHeadless
       - run:
           name: Run e2e tests
           command: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
