@@ -18,7 +18,8 @@ jobs:
           command: npm install
       - run: 
           name: Install Angular CLI
-          environment: NG_CLI_ANALYTICS: "ci"
+          environment: 
+            NG_CLI_ANALYTICS: "ci"
           command: sudo npm install -g @angular/cli
       - run: 
           name: Run Unit Tests and Integration Tests
