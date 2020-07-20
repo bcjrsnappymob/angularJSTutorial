@@ -20,8 +20,13 @@ jobs:
           key: angularJSTutorial-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             - "node_modules"
+      - store_artifacts:
+          path: /tmp/screenshots
+          destination: screenshot
+      - store_test_results:
+          path: /tmp/test-results
       - run:
-          name: Upgrade Google Chrome Version to 84 for e2e tests
+          name: Update Google Chrome Version to 84 for e2e Protractor tests
           command: |
             sudo apt-get update
             sudo apt-get install lsb-release libappindicator3-1
@@ -36,7 +41,7 @@ jobs:
           name: Run e2e tests
           command: npm run e2e -- --protractor-config=e2e/protractor.conf.js
       - run: 
-          name: Deploy to Netlify through web hooks 
+          name: Deploy to Netlify through a Netlify webhook
           command: curl -X POST -d {} ${hook}
 workflows:
     build-test-deploy:
