@@ -22,10 +22,7 @@ jobs:
             - "node_modules"
       - run:
           name: Create directories for Test Results and Artifacts
-          command: mkdir ./tmp && mkdir ./tmp/screenshots && mkdir ./tmp/test-results
-      - store_artifacts:
-          path: /tmp/screenshots
-          destination: screenshot
+          command: mkdir ./tmp && mkdir ./tmp/test-results
       - store_test_results:
           path: /tmp/test-results
       - run:
