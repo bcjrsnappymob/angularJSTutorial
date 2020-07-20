@@ -19,6 +19,11 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, './coverage/angular-tour-of-heroes'),
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true,
+      'report-config':{
+        html:{
+          subdir: 'html-reports'
+        }
+      }
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
@@ -26,7 +31,7 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: true,
+    singleRun: false,
     restartOnFileChange: true
   });
 };
