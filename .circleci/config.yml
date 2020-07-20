@@ -20,6 +20,9 @@ jobs:
           key: angularJSTutorial-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             - "node_modules"
+      - run:
+          name: Create directories for Test Results and Artifacts
+          destination: mkdir ./tmp && mkdir ./tmp/screenshots && mkdir ./tmp/test-results
       - store_artifacts:
           path: /tmp/screenshots
           destination: screenshot
