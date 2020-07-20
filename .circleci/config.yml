@@ -38,8 +38,6 @@ jobs:
       - run:
           name: Run e2e tests
           command: npm run e2e -- --protractor-config=e2e/protractor.conf.js
-      - store_test_results:
-          path: /tmp/test-results
       - run: 
           name: Deploy to Netlify through a Netlify webhook
           command: curl -X POST -d {} ${hook}
