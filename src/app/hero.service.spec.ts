@@ -2,7 +2,6 @@ import { of } from 'rxjs';
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
 import { MessageService } from './message.service';
-import { HttpErrorResponse } from '@angular/common/http';
 
 describe('HeroService', () => {
 
@@ -23,7 +22,7 @@ describe('HeroService', () => {
         httpClientSpy.get.and.returnValue(of(expectedHeroes));
 
         heroService.getHeroes().subscribe(
-            heroes => expect(heroes).toEqual(expectedHeroes, 'expected heroes'), 
+            heroes => expect(heroes).toEqual(expectedHeroes, 'expected heroes'),
             fail
         );
 
