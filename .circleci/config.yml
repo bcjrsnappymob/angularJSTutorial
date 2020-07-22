@@ -21,9 +21,6 @@ jobs:
           paths:
             - "node_modules"
       - run:
-          name: Create directories for Test Results and Artifacts
-          command: mkdir ./tmp && mkdir ./tmp/test-results
-      - run:
           name: Update Google Chrome Version to 84 for e2e Protractor tests
           command: |
             sudo apt-get update
