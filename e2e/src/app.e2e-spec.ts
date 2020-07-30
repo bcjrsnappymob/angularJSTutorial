@@ -42,7 +42,7 @@ describe('Tour of Heroes App', () => {
   });
 
   it('should navigate to hero details page', () => {
-    const heroDetailsButton = element.all(by.css('.heroes li a'));
+    const heroDetailsButton = element.all(by.css('.hero es li a'));
     expect(heroDetailsButton.getText()).not.toBeUndefined();
     if (heroDetailsButton.click()){
       browser.get('https://tourofheroesangular.netlify.app/detail/11');
