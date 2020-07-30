@@ -2,20 +2,43 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  build-and-test:
+  build-test-deploy:
+    working_directory: ~/angularJSTutorial
+    docker:
+      - image: circleci/node:12.18.0-browsers
     executor:
       name: node/default
+  
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-          - run:
-              name: Install libs
-              command: sudo apt-get install libxtst6 libgconf-2-4 libnss3 libasound2 libgtk-3-0 libxss1
-            - run: npm install
-            - run: npm run e2e
-            - run: npm test
+      - restore_cache:
+          key: angularJSTutorial-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run: 
+          name: Install dependencies from package-lock.json
+          command: npm install
+      - save_cache:
+          key: angularJSTutorial-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          paths:
+            - "node_modules"
+      - run:
+          name: Update Google Chrome Version to 84 for e2e Protractor tests
+          command: |
+            sudo apt-get update
+            sudo apt-get install lsb-release libappindicator3-1
+            curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo dpkg -i google-chrome.deb
+            sudo sed -i 's|HERE/chrome"|HERE/chrome" --no-sandbox|g' /opt/google/chrome/google-chrome
+            rm google-chrome.deb
+      - run:
+          name: Check Code Coverage and Run Unit and Integration tests
+          command: npm run test -- --no-watch --no-progress --code-coverage --browsers ChromeHeadless
+      - run:
+          name: Run e2e tests
+          command: npm run e2e -- --protractor-config=e2e/protractor.conf.js
+      - run: 
+          name: Deploy to Netlify through a Netlify webhook
+          command: curl -X POST -d {} ${hook}
 workflows:
-    build-and-test:
+    build-test-deploy:
       jobs:
-        - build-and-test
+        - build-test-deploy
